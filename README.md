@@ -11,4 +11,4 @@ It's based on [V-USB](https://www.obdev.at/products/vusb/). I've reused the Riso
 
 The code assumes USB D- is connected to Port B pin 1, USB D+ to Port B pin 2 (INT0), red is on Port B pin 3, blue on Port B pin 4 and green on Port B pin 5. The USB definitions can be configured in usbconfig.h, the LED pins are defined at the top of main.c.
 
-Given that V-USB is GPLv2+ or commercial all of my code is released as GPLv3+, available at [https://the.earth.li/gitweb/?p=riso-kaguku-clone.git;a=summary](https://the.earth.li/gitweb/?p=riso-kaguku-clone.git;a=summary) or on GitHub for easy whatever at [https://github.com/u1f35c/riso-kaguku-clone](https://github.com/u1f35c/riso-kaguku-clone)
+Given that V-USB is GPLv2+ or commercial all of my code is released as GPLv3+, available at [https://the.earth.li/gitweb/?p=riso-kagaku-clone.git;a=summary](https://the.earth.li/gitweb/?p=riso-kagaku-clone.git;a=summary) or on GitHub for easy whatever at [https://github.com/u1f35c/riso-kagaku-clone](https://github.com/u1f35c/riso-kagaku-clone)

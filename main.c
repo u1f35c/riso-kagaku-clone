@@ -27,9 +27,9 @@
 #include "usbdrv.h"
 #include "libs-device/osccal.h"
 
-#define RED_BIT    8 /* Bit 3 on port B */
-#define GREEN_BIT 16 /* Bit 4 on port B */
-#define BLUE_BIT  32 /* Bit 5 on port B */
+#define GREEN_BIT  1 /* Bit 0 on port B */
+#define RED_BIT    2 /* Bit 1 on port B */
+#define BLUE_BIT   4 /* Bit 2 on port B */
 #define ALL_BITS (RED_BIT | GREEN_BIT | BLUE_BIT)
 #define CMD_SET_SERIAL 0xfa
 

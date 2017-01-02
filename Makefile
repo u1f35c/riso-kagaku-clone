@@ -1,4 +1,4 @@
-DEVICE = attiny45
+DEVICE = attiny85
 F_CPU = 16500000
 
 CFLAGS = -Iusbdrv -I.

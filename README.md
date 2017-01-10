@@ -7,8 +7,12 @@ It's based on [V-USB](https://www.obdev.at/products/vusb/). I've reused the Riso
 `make` will then build you a main.hex which you can program to your device using
 `avrdude`. With my [Bus Pirate](http://dangerousprototypes.com/docs/Bus_Pirate) I use:
 
-    avrdude -p attiny45 -c buspirate -P /dev/ttyUSB0 -U flash:w:main.hex:i
+    avrdude -p attiny85 -c buspirate -P /dev/ttyUSB0 -U flash:w:main.hex:i
 
-The code assumes USB D- is connected to Port B pin 1, USB D+ to Port B pin 2 (INT0), red is on Port B pin 3, blue on Port B pin 4 and green on Port B pin 5. The USB definitions can be configured in usbconfig.h, the LED pins are defined at the top of main.c.
+Or if you're using [Micronucleus](https://github.com/micronucleus/micronucleus):
+
+    micronucleus main.hex
+
+I originally tested the code out on a tiny45 board I had lying around, but subsequently have reconfigured for a [Digispark](http://digistump.com/products/1) clone, which is based on a tiny85 and comes with Micronucleus pre-installed, removing the need for a separate programmer. USB D- is assumed to be connected to Port B pin 3, USB D+ to Port B pin 4, green is on Port B pin 0, red is on Port B pin 1, and blue on Port B pin 2. The USB definitions can be configured in usbconfig.h, the LED pins are defined at the top of main.c.
 
 Given that V-USB is GPLv2+ or commercial all of my code is released as GPLv3+, available at [https://the.earth.li/gitweb/?p=riso-kagaku-clone.git;a=summary](https://the.earth.li/gitweb/?p=riso-kagaku-clone.git;a=summary) or on GitHub for easy whatever at [https://github.com/u1f35c/riso-kagaku-clone](https://github.com/u1f35c/riso-kagaku-clone)

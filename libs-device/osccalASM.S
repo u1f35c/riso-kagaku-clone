@@ -93,7 +93,7 @@ calibrateOscillatorASM:
 	cli
 	ldi		opD, 255
 
-	ldi		try, 128	; calibration start value
+	in		try, OSCCAL	; calibration start value
 	ldi		stp, 64		; initial step width
 	ldi		i, 10		; 10 iterations
 

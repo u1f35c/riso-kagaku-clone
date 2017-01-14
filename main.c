@@ -33,7 +33,6 @@
 #define ALL_BITS (RED_BIT | GREEN_BIT | BLUE_BIT)
 #define CMD_SET_SERIAL 0xfa
 
-uchar serno_read = 0;
 int serno_str[] = {
 	USB_STRING_DESCRIPTOR_HEADER(8),
 	'U', 'N', 'S', 'E', 'T', 'X', 'X', 'X',
@@ -89,7 +88,7 @@ PROGMEM const char usbHidReportDescriptor[22] = {
 	0x15, 0x00,			/*   LOGICAL_MINIMUM (0) */
 	0x26, 0xff, 0x00,		/*   LOGICAL_MAXIMUM (255) */
 	0x75, 0x08,			/*   REPORT_SIZE (8 bits) */
-	0x95, 0x06,			/*   REPORT_COUNT (6 elements) */
+	0x95, 0x08,			/*   REPORT_COUNT (8 elements) */
 	0x09, 0x00,			/*   USAGE (Undefined) */
 	0xb2, 0x02, 0x01,		/*   FEATURE (Data, Var, Abs, Buf) */
 	0xc0				/* END_COLLECTION */
@@ -104,28 +103,25 @@ void fetch_serno(void)
 {
 	uint32_t serno;
 
-	if (!serno_read) {
-		eeprom_read_block(&serno, 0, 4);
-		if (serno == 0xffffffff) {
-			serno_str[1] = 'U';
-			serno_str[2] = 'N';
-			serno_str[3] = 'S';
-			serno_str[4] = 'E';
-			serno_str[5] = 'T';
-			serno_str[6] = 'X';
-			serno_str[7] = 'X';
-			serno_str[8] = 'X';
-		} else {
-			serno_str[1] = hexdigit((serno >> 28));
-			serno_str[2] = hexdigit((serno >> 24) & 0xF);
-			serno_str[3] = hexdigit((serno >> 20) & 0xF);
-			serno_str[4] = hexdigit((serno >> 16) & 0xF);
-			serno_str[5] = hexdigit((serno >> 12) & 0xF);
-			serno_str[6] = hexdigit((serno >>  8) & 0xF);
-			serno_str[7] = hexdigit((serno >>  4) & 0xF);
-			serno_str[8] = hexdigit( serno        & 0xF);
-		}
-		serno_read = 1;
+	eeprom_read_block(&serno, 0, 4);
+	if (serno == 0xffffffff) {
+		serno_str[1] = 'U';
+		serno_str[2] = 'N';
+		serno_str[3] = 'S';
+		serno_str[4] = 'E';
+		serno_str[5] = 'T';
+		serno_str[6] = 'X';
+		serno_str[7] = 'X';
+		serno_str[8] = 'X';
+	} else {
+		serno_str[1] = hexdigit((serno >> 28));
+		serno_str[2] = hexdigit((serno >> 24) & 0xF);
+		serno_str[3] = hexdigit((serno >> 20) & 0xF);
+		serno_str[4] = hexdigit((serno >> 16) & 0xF);
+		serno_str[5] = hexdigit((serno >> 12) & 0xF);
+		serno_str[6] = hexdigit((serno >>  8) & 0xF);
+		serno_str[7] = hexdigit((serno >>  4) & 0xF);
+		serno_str[8] = hexdigit( serno        & 0xF);
 	}
 }
 
@@ -253,6 +249,8 @@ int __attribute__((noreturn)) main(void)
 	unsigned char i;
 
 	wdt_enable(WDTO_1S);
+
+	fetch_serno();
 
 	usbInit();
 	usbDeviceDisconnect();

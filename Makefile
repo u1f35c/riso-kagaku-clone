@@ -1,11 +1,11 @@
 DEVICE = attiny85
 F_CPU = 16500000
 
-CFLAGS = -Iusbdrv -I.
+CFLAGS = -Iusbdrv -Ilibs-device -I.
 AVRCC = avr-gcc -Wall -Os -DF_CPU=$(F_CPU) $(CFLAGS) -mmcu=$(DEVICE)
 
 OBJECTS = usbdrv/usbdrv.o usbdrv/usbdrvasm.o usbdrv/oddebug.o \
-	libs-device/osccal.o main.o
+	libs-device/osccalASM.o main.o
 
 .c.o:
 	$(AVRCC) -c $< -o $@
